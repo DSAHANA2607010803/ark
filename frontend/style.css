@@ -1,0 +1,262 @@
+:root {
+  --bg: #0B1020;
+  --panel: #141B34;
+  --text: #E8ECF8;
+  --accent: #2DD4BF;
+  --safe: #34D399;
+  --watch: #FBBF24;
+  --risk: #F87171;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: Inter, system-ui, Arial, sans-serif;
+}
+
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 1rem;
+}
+
+h1 {
+  font-size: 3rem;
+  margin: 0 0 0.5rem;
+  color: var(--accent);
+}
+
+.status {
+  margin-top: 2rem;
+  padding: 0.5rem 1rem;
+  background: var(--panel);
+  border-radius: 8px;
+  font-family: "JetBrains Mono", Consolas, monospace;
+}
+
+.status.ok { color: var(--safe); }
+.status.error { color: var(--risk); }
+/* ---------- Milestone 3: scanner ---------- */
+
+.hero { min-height: 40vh; }   /* later rule wins: makes room for the scanner */
+
+.scan {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 1rem 1rem 4rem;
+}
+
+.scan h2 { color: var(--accent); }
+
+.note { opacity: 0.8; }
+
+.btn {
+  background: var(--accent);
+  color: var(--bg);
+  border: 0;
+  border-radius: 8px;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+.btn:hover { filter: brightness(1.1); }
+.btn:focus-visible { outline: 3px solid var(--text); outline-offset: 2px; }
+
+.bar {
+  height: 10px;
+  background: var(--panel);
+  border-radius: 999px;
+  overflow: hidden;
+  margin-top: 1.5rem;
+}
+#bar-fill {
+  height: 100%;
+  width: 0%;
+  background: var(--accent);
+  transition: width 0.1s;
+}
+
+.summary {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin: 1.5rem 0;
+}
+.summary .card {
+  background: var(--panel);
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  min-width: 110px;
+}
+.summary .card strong { display: block; font-size: 1.5rem; }
+
+.table-wrap { overflow-x: auto; }
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--panel);
+  border-radius: 8px;
+}
+th, td {
+  text-align: left;
+  padding: 0.5rem 0.75rem;
+  border-bottom: 1px solid var(--bg);
+  font-size: 0.9rem;
+}
+td.mono {
+  font-family: "JetBrains Mono", Consolas, monospace;
+  font-size: 0.8rem;
+}
+
+/* never colour alone: each tag also has an icon and a word */
+.tag-ok       { color: var(--safe);  font-weight: 600; }
+.tag-mismatch { color: var(--risk);  font-weight: 600; }
+.tag-unknown  { color: var(--watch); font-weight: 600; }
+/* ---------- Milestone 4: risk ratings ---------- */
+
+.options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin: 1rem 0 0.5rem;
+}
+.options label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  font-size: 0.9rem;
+}
+.options select {
+  background: var(--panel);
+  color: var(--text);
+  border: 1px solid var(--accent);
+  border-radius: 8px;
+  padding: 0.5rem 0.75rem;
+  font-size: 1rem;
+}
+
+/* icon + word + colour, so colour is never the only signal */
+.risk-safe  { color: var(--safe);  font-weight: 600; white-space: nowrap; }
+.risk-watch { color: var(--watch); font-weight: 600; white-space: nowrap; }
+.risk-high  { color: var(--risk);  font-weight: 600; white-space: nowrap; }
+
+td.why { min-width: 260px; }
+td.why ul { margin: 0; padding-left: 1.1rem; }
+td.why li { margin-bottom: 0.25rem; }
+
+.estimate { font-size: 0.85rem; opacity: 0.7; margin-top: 1rem; }
+/* ---------- Milestone 5: Time Machine ---------- */
+
+.tm {
+  margin: 2rem 0;
+  padding: 1.25rem;
+  background: var(--panel);
+  border-radius: 12px;
+}
+.tm h3 { margin-top: 0; color: var(--accent); }
+
+.mode-row { display: flex; flex-wrap: wrap; gap: 0.75rem; margin: 1rem 0; }
+
+.btn-toggle {
+  background: transparent;
+  color: var(--text);
+  border: 2px solid var(--accent);
+  border-radius: 8px;
+  padding: 0.6rem 1.2rem;
+  font-size: 1rem;
+  cursor: pointer;
+}
+.btn-toggle[aria-pressed="true"] {
+  background: var(--accent);
+  color: var(--bg);
+  font-weight: 600;
+}
+.btn-toggle:focus-visible { outline: 3px solid var(--text); outline-offset: 2px; }
+
+.tile-grid { display: flex; flex-wrap: wrap; gap: 6px; margin: 1.25rem 0; }
+
+.tile {
+  width: 30px;
+  height: 30px;
+  border-radius: 6px;
+  border: 2px solid;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  font-weight: 700;
+  transition: opacity 0.5s, background-color 0.5s, border-color 0.5s, color 0.5s;
+}
+.tile-safe  { color: var(--safe);  border-color: var(--safe);  background: rgba(52, 211, 153, 0.2);  opacity: 1; }
+.tile-watch { color: var(--watch); border-color: var(--watch); background: rgba(251, 191, 36, 0.15); opacity: 0.75; }
+.tile-risk  { color: var(--risk);  border-color: var(--risk);  background: rgba(248, 113, 113, 0.1); opacity: 0.35; }
+
+.slider-row { display: flex; align-items: center; gap: 1rem; }
+#year-slider { flex: 1; accent-color: var(--accent); }
+.year-label {
+  font-family: "JetBrains Mono", Consolas, monospace;
+  font-size: 1.5rem;
+  min-width: 4ch;
+  text-align: right;
+}
+
+.counter {
+  font-family: "JetBrains Mono", Consolas, monospace;
+  font-size: 1.05rem;
+  margin: 1rem 0 0.5rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tile { transition: none; }
+}
+/* ---------- Milestone 6: history and re-verify ---------- */
+
+#save-btn { margin-left: 0.75rem; }
+
+.history-item {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  background: var(--panel);
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  margin-bottom: 0.75rem;
+}
+.history-buttons { display: flex; gap: 0.5rem; }
+.history-buttons .btn-toggle { padding: 0.4rem 0.9rem; font-size: 0.9rem; }
+
+.verify-box { margin-top: 1.25rem; }
+
+.verify-item {
+  padding: 0.6rem 0.9rem;
+  border-radius: 8px;
+  margin: 0.5rem 0;
+  border: 2px solid;
+  font-weight: 600;
+  word-break: break-all;
+}
+.verify-ok      { color: var(--safe);  border-color: var(--safe);  background: rgba(52, 211, 153, 0.12); }
+.verify-missing { color: var(--watch); border-color: var(--watch); background: rgba(251, 191, 36, 0.10); }
+.verify-new     { color: var(--accent); border-color: var(--accent); background: rgba(45, 212, 191, 0.10); }
+.verify-changed {
+  color: var(--risk);
+  border-color: var(--risk);
+  background: rgba(248, 113, 113, 0.15);
+  animation: flash 0.8s ease-in-out 3;   /* flashes red three times */
+}
+@keyframes flash { 50% { background: rgba(248, 113, 113, 0.55); } }
+
+@media (prefers-reduced-motion: reduce) {
+  .verify-changed { animation: none; }
+}
+/* ---------- Milestone 7: package button ---------- */
+#package-btn { margin-top: 0.5rem; }

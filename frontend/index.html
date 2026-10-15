@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ark: Digital Survival Forecaster</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <main class="hero">
+    <h1>Hello, Ark 🛟</h1>
+    <p>Will your files still open in 2036?</p>
+    <p id="server-status" class="status">Checking server…</p>
+  </main>
+
+  <section class="scan">
+    <h2>Scan a folder</h2>
+    <p class="note">Your files never leave this computer. Ark reads them right here in the browser.</p>
+
+    <div class="options">
+      <label>Where do these files live?
+        <select id="location-select">
+          <option value="computer">Computer hard drive</option>
+          <option value="external">External hard drive</option>
+          <option value="usb">USB pen drive or SD card</option>
+          <option value="disc">CD or DVD</option>
+          <option value="phone">Old phone or tablet</option>
+          <option value="cloud">Online account (Google Drive, iCloud...)</option>
+        </select>
+      </label>
+      <label>How many copies exist?
+        <select id="copies-select">
+          <option value="1">1 (just this one)</option>
+          <option value="2">2</option>
+          <option value="3">3 or more</option>
+        </select>
+      </label>
+    </div>
+    <p class="note">Changing these after a scan updates the ratings instantly.</p>
+
+    <input type="file" id="folder-input" webkitdirectory multiple hidden>
+    <button id="choose-btn" class="btn" type="button">Choose folder</button>
+        <button id="save-btn" class="btn-toggle" type="button">Save this scan</button>
+    <span id="save-msg" class="note"></span>
+
+    <div id="progress" hidden>
+      <div class="bar"><div id="bar-fill"></div></div>
+      <p id="progress-text" class="note"></p>
+    </div>
+
+    <p id="message" class="note" hidden></p>
+    <div id="summary" class="summary" hidden></div>
+        <section id="time-machine" class="tm" hidden>
+      <h3>Time Machine</h3>
+      <p class="note">Drag the slider to see which files are likely to survive. Each square is one file.</p>
+
+      <div class="mode-row">
+        <button id="btn-nothing" class="btn-toggle" type="button" aria-pressed="true">Do nothing</button>
+        <button id="btn-plan" class="btn-toggle" type="button" aria-pressed="false">Follow the plan</button>
+      </div>
+      <p id="plan-note" class="note" hidden>The plan: keep 3 copies of every file, fix wrongly named files, and convert old formats (old Office, AVI, HEIC) to open ones. Flash files and programs can't be converted this way.</p>
+
+      <div id="tile-grid" class="tile-grid" aria-hidden="true"></div>
+
+      <div class="slider-row">
+        <span class="note">Now</span>
+        <input type="range" id="year-slider" aria-label="Year to forecast">
+        <span id="year-label" class="year-label"></span>
+      </div>
+      <p id="tm-counter" class="counter" aria-live="polite"></p>
+      <button id="package-btn" class="btn" type="button">Download Survival Package</button>
+      <p id="package-msg" class="note"></p>
+      <p class="estimate">Estimated from simple rules, not a measured prediction.</p>
+    </section>
+
+    <div class="table-wrap">
+      <table id="results" hidden>
+        <thead>
+          <tr>
+            <th>File</th>
+            <th>Real format</th>
+            <th>Risk now</th>
+            <th>Risk in 2036</th>
+            <th>Why</th>
+            <th>Fingerprint</th>
+          </tr>
+        </thead>
+        <tbody id="results-body"></tbody>
+      </table>
+    </div>
+    <p class="estimate">Scores are estimates from simple rules, not measured predictions. "Risk in 2036" assumes you do nothing.</p>
+  </section>
+     <section id="history" class="scan">
+    <h2>History</h2>
+    <p class="note">Saved scans live in this browser on this device. Press Re-verify on one, then choose the same folder again to see whether anything changed.</p>
+    <p id="history-msg" class="note"></p>
+    <div id="history-list"></div>
+    <input type="file" id="verify-input" webkitdirectory multiple hidden>
+    <div id="verify-result" class="verify-box" hidden></div>
+  </section>
+  <script src="/static/app.js"></script>
+  <script src="/static/risk.js"></script>
+  <script src="/static/scanner.js"></script>
+  <script src="/static/timemachine.js"></script>
+    <script src="/static/history.js"></script>
+     <script src="/static/survival.js"></script>
+
+</body>
+</html>
