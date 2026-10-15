@@ -1,0 +1,6 @@
+{
+  "outputDirectory": "frontend",
+  "rewrites": [
+    { "source": "/static/:path*", "destination": "/:path*" }
+  ]
+}
